@@ -75,6 +75,8 @@ class MyModel(nn.Module):
             weight = self.weightor(self.weight)
             abs_arr = torch.abs(weight)
             topk_values, topk_indices = torch.topk(abs_arr, k=1)
+            # topk_values, topk_indices = torch.topk(abs_arr, k=6)
+            # topk_values, topk_indices = torch.topk(abs_arr, k=9)
             weights = torch.zeros_like(weight)
             weights[topk_indices] = weight[topk_indices]
         summary = torch.einsum('bij,i->bj', codes, weights)
